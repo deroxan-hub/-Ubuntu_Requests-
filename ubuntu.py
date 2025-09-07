@@ -149,7 +149,7 @@ def download_image(url, save_directory, max_size_mb=20):
             'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0'
         }
         
-        print(f"🔍 Pre-flight check for {urlparse(url).netloc}...")
+        print(f" Pre-flight check for {urlparse(url).netloc}...")
         try:
             head_response = requests.head(url, headers=headers, timeout=15, allow_redirects=True)
             header_issues = check_http_headers(head_response)
@@ -166,7 +166,7 @@ def download_image(url, save_directory, max_size_mb=20):
             print("⚠ Could not perform pre-flight header check, proceeding anyway...")
         
         # Send GET request with size limits
-        print(f"🌐 Downloading from {urlparse(url).netloc}...")
+        print(f" Downloading from {urlparse(url).netloc}...")
         response = requests.get(
             url, 
             headers=headers, 
@@ -198,7 +198,7 @@ def download_image(url, save_directory, max_size_mb=20):
         # Check for duplicates
         is_duplicate, duplicate_info = check_duplicate_image(content, save_directory)
         if is_duplicate:
-            print(f"⏭️  Skipping duplicate image (already exists as: {duplicate_info})")
+            print(f" Skipping duplicate image (already exists as: {duplicate_info})")
             return True  # Consider this a "success" but didn't download
         
         # Verify it's actually an image using magic numbers
@@ -231,9 +231,9 @@ def download_image(url, save_directory, max_size_mb=20):
         
         file_size = len(content) / 1024  # Convert to KB
         print(f"✓ Successfully downloaded: {filename}")
-        print(f"📁 Saved to: {filepath}")
-        print(f"📊 File size: {file_size:.2f} KB")
-        print(f"🔐 Content hash: {calculate_file_hash(content)}")
+        print(f" Saved to: {filepath}")
+        print(f" File size: {file_size:.2f} KB")
+        print(f" Content hash: {calculate_file_hash(content)}")
         
         return True
         
@@ -272,7 +272,7 @@ def get_urls_from_user():
 def main():
     """Main function to run the image fetcher"""
     print("=" * 60)
-    print("🖼️  Enhanced Image Fetcher - Ubuntu Community Tool")
+    print(" Enhanced Image Fetcher - Ubuntu Community Tool")
     print("=" * 60)
     print("This tool helps you safely download multiple images from the web")
     print("with security precautions and duplicate prevention.")
@@ -291,7 +291,7 @@ def main():
             print("✗ No URLs provided. Exiting.")
             return
         
-        print(f"\n📋 Processing {len(urls)} URLs...")
+        print(f"\n Processing {len(urls)} URLs...")
         
         # Download each image
         success_count = 0
@@ -302,22 +302,22 @@ def main():
         
         # Print summary
         print("\n" + "=" * 40)
-        print("📊 Download Summary:")
+        print(" Download Summary:")
         print(f"Total URLs processed: {len(urls)}")
         print(f"Successful downloads: {success_count}")
         print(f"Failed downloads: {len(urls) - success_count}")
         print("=" * 40)
         
         if success_count > 0:
-            print("🎉 Some downloads completed successfully!")
-            print("💾 Your images are ready for sharing in the community!")
+            print(" Some downloads completed successfully!")
+            print(" Your images are ready for sharing in the community!")
         else:
-            print("❌ All downloads failed. Please check the URLs and try again.")
+            print(" All downloads failed. Please check the URLs and try again.")
             
     except KeyboardInterrupt:
-        print("\n\n👋 Operation cancelled by user. Stay Ubuntu!")
+        print("\n\n Operation cancelled by user(Contact Kariuki for further assistnce). Stay Ubuntu!")
     except EOFError:
-        print("\n\n👋 Goodbye! Keep sharing with the community!")
+        print("\n\n Goodbye! Keep sharing with the community!")
 
 if __name__ == "__main__":
     main()
